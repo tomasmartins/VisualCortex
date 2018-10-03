@@ -62,6 +62,8 @@ def talker():
                 if(rospy.is_shutdown()):
                     break
 
+
+
 if __name__ == '__main__':
     try:
            talker()
