@@ -8,7 +8,7 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 
 def talker():
-        pub = rospy.Publisher('image', Image, queue_size=1)
+        pub = rospy.Publisher('image_raw', Image, queue_size=1)
         rospy.init_node('left')
         rate = rospy.Rate(40)
         camera = PiCamera()
