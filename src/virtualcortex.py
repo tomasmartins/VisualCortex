@@ -6,7 +6,6 @@ import cv2
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from sensor_msgs.msg import CameraInfo
-import yaml
 
 from cv_bridge import CvBridge, CvBridgeError
 
@@ -51,26 +50,20 @@ def talker():
         camera.framerate = 32
         rawCapture = PiRGBArray(camera, size=(1280, 960))
         time.sleep(0.1)
-        camera_info_msg = yaml_to_CameraInfo('camera.yaml')
-
-        for frame in camera.capture_continuous(rawCapture, format="raw", use_video_port=True):
+        for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
         # grab the raw NumPy array representing the image, then initialize the timestamp
         # and occupied/unoccupied text
 
                 image = frame.array
                 bridge = CvBridge()
-                pubinfo.publish(camera_info_msg);
-                pub.publish(bridge.cv2_to_imgmsg(image, "raw"))
+                pubinfo.publish(yaml_to_CameraInfo('camera.yaml'));
+                pub.publish(bridge.cv2_to_imgmsg(image, "bgr8"))
                 rawCapture.truncate(0)
                 if(rospy.is_shutdown()):
                     break
 
-
-
 if __name__ == '__main__':
     try:
-
-
            talker()
     except rospy.ROSInterruptException:
            pass
