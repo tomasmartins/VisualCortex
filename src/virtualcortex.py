@@ -10,7 +10,7 @@ from cv_bridge import CvBridge, CvBridgeError
 
 def talker():
         pub = rospy.Publisher('image_raw', Image, queue_size=1)
-        rospy.init_node('left')
+        rospy.init_node('left', anonymous=False)
         rate = rospy.Rate(40)
         camera = PiCamera()
         camera.resolution = (640, 480)
