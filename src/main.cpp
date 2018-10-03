@@ -5,6 +5,8 @@
 #include <sensor_msgs/Image.h>
 #include <image_transport/image_transport.h>
 #include <raspicam/raspicam_cv.h>
+#include "std_msgs/String.h"
+#include <sstream>
 
 using namespace std;
  
@@ -25,7 +27,7 @@ int main ( int argc,char **argv ) {
     
     //Camera.set( CV_CAP_PROP_FORMAT, CV_8UC1 );
     
-    image_transport::Publisher pub = it.advertise<std_msgs::String>("image", 1);
+    image_transport::Publisher pub = it.advertise("image", 1);
     
     ros::Rate loop_rate(40);
    
