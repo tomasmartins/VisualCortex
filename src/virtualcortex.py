@@ -22,7 +22,6 @@ def talker():
         # and occupied/unoccupied text
                 image = frame.array
 
-                rospy.loginfo(image)
                 pub.publish(image)
                 rawCapture.truncate(0)
 
