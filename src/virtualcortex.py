@@ -56,7 +56,7 @@ def talker():
 
                 image = frame.array
                 bridge = CvBridge()
-                pubinfo.publish(yaml_to_CameraInfo(open('camera.yaml',r)));
+                pubinfo.publish(yaml_to_CameraInfo(open('camera.yaml',"r")));
                 pub.publish(bridge.cv2_to_imgmsg(image, "bgr8"))
                 rawCapture.truncate(0)
                 if(rospy.is_shutdown()):
