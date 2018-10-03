@@ -7,7 +7,7 @@ from std_msgs.msg import Image
 
 def talker():
         pub = rospy.Publisher('image', Image, queue_size=1)
-        rospy.init:node('left')
+        rospy.init_node('left')
         rate = rospy.Rate(40)
         camera = PiCamera()
         camera.resolution = (640, 480)
