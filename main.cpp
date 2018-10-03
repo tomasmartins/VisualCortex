@@ -1,6 +1,6 @@
 #include <ctime>
 #include <iostream>
-#include <raspicam/raspicam_cv.h>
+//#include <raspicam/raspicam_cv.h>
 #include <ros/ros.h>
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/Image.h>
@@ -8,7 +8,7 @@
 using namespace std;
  
 int main ( int argc,char **argv ) {
-   
+/*	   
     ros::init(argc, argv, "left");
     
     raspicam::RaspiCam_Cv Camera;
@@ -39,4 +39,6 @@ int main ( int argc,char **argv ) {
         loop_rate.sleep();
     }
     Camera.release();
+*/
+return 0;
 }

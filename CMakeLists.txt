@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(visualcortex)
-
-## Compile as C++11, supported in ROS Kinetic and newer
+# Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
@@ -10,12 +9,12 @@ project(visualcortex)
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_transport
-  raspicam
   roscpp
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+## find_package(raspicam REQUIRED COMPONENTS system)
+ find_package(OpenCV)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -104,8 +103,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES visualcortex
+  INCLUDE_DIRS include
+#${raspicam_CV_LIBS}
+  LIBRARIES visualcortex
 #  CATKIN_DEPENDS cv_bridge image_transport raspicam roscpp
 #  DEPENDS system_lib
 )
@@ -147,9 +147,9 @@ include_directories(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+ target_link_libraries(${PROJECT_NAME}_node
+   ${catkin_LIBRARIES} ${raspicam_CV_LIBS}
+ )
 
 #############
 ## Install ##
