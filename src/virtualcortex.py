@@ -53,14 +53,14 @@ def talker():
         time.sleep(0.1)
         camera_info_msg = yaml_to_CameraInfo('camera.yaml')
 
-        for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+        for frame in camera.capture_continuous(rawCapture, format="raw", use_video_port=True):
         # grab the raw NumPy array representing the image, then initialize the timestamp
         # and occupied/unoccupied text
 
                 image = frame.array
                 bridge = CvBridge()
                 pubinfo.publish(camera_info_msg);
-                pub.publish(bridge.cv2_to_imgmsg(image, "bgr8"))
+                pub.publish(bridge.cv2_to_imgmsg(image, "raw"))
                 rawCapture.truncate(0)
                 if(rospy.is_shutdown()):
                     break
