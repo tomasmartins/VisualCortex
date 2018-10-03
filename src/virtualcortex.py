@@ -6,7 +6,7 @@ import cv2
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from sensor_msgs.msg import CameraInfo
-
+import yaml
 from cv_bridge import CvBridge, CvBridgeError
 
 def yaml_to_CameraInfo(yaml_fname):
