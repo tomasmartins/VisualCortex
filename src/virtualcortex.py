@@ -24,7 +24,7 @@ def talker():
 
                 image = frame.array
                 bridge = CvBridge()
-                pub.publish(bridge.bridge.cv2_to_imgmsg(image, "bgr8"))
+                pub.publish(bridge.cv2_to_imgmsg(image, "bgr8"))
                 rawCapture.truncate(0)
 
 if __name__ == '__main__':
