@@ -50,14 +50,15 @@ def talker():
         camera.framerate = 32
         rawCapture = PiRGBArray(camera, size=(1280, 960))
         time.sleep(0.1)
-        yaml = yaml_to_CameraInfo('camera.yaml')
+        camera_info_msg = yaml_to_CameraInfo('camera.yaml')
+
         for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
         # grab the raw NumPy array representing the image, then initialize the timestamp
         # and occupied/unoccupied text
 
                 image = frame.array
                 bridge = CvBridge()
-                pubinfo.publish(yaml);
+                pubinfo.publish(camera_info_msg);
                 pub.publish(bridge.cv2_to_imgmsg(image, "bgr8"))
                 rawCapture.truncate(0)
                 if(rospy.is_shutdown()):
