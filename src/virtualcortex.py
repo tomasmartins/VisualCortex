@@ -5,6 +5,7 @@ import time
 import cv2
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
+from sensor_msgs.msg import CameraInfo
 from cv_bridge import CvBridge, CvBridgeError
 
 def talker():
@@ -20,9 +21,10 @@ def talker():
             for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
         # grab the raw NumPy array representing the image, then initialize the timestamp
         # and occupied/unoccupied text
-                image = frame.array
 
-                pub.publish(image)
+                image = frame.array
+                bridge = CvBridge()
+                pub.publish(bridge.bridge.cv2_to_imgmsg(image, "bgr8"))
                 rawCapture.truncate(0)
 
 if __name__ == '__main__':
