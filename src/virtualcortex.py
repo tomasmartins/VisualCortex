@@ -50,8 +50,7 @@ def talker():
         camera.framerate = 32
         rawCapture = PiRGBArray(camera, size=(1280, 960))
         time.sleep(0.1)
-        file = open('camera.yaml',"r")
-        yaml = yaml_to_CameraInfo(file)
+        yaml = yaml_to_CameraInfo('camera.yaml')
         for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
         # grab the raw NumPy array representing the image, then initialize the timestamp
         # and occupied/unoccupied text
