@@ -3,7 +3,9 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
 import cv2
-from sensor_msgs import Image
+from std_msgs.msg import String
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge, CvBridgeError
 
 def talker():
         pub = rospy.Publisher('image', Image, queue_size=1)
